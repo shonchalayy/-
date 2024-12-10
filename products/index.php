@@ -31,13 +31,11 @@ $products = $pdo->query('SELECT * FROM products')
             <td><?=$product['name']?></td>
             <td><?=$product['price']?></td>
             <td><?=$product['article']?></td>
-
-            <td><a href="products/edit.php?id=<?=$product['id']?>">Редактировать</a></td>
-            <td><a href="/products/actions/delete.php?id<?=$product['id']?>">Удалить</a></td>
         </tr>
     <?php endforeach;?>
     </tbody>
 </table>
 <a href="/products/create.php"><button>Добавить</button></a>
+<a href="/index.php"><button>Главная</button></a>
 </body>
 </html>

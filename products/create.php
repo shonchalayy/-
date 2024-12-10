@@ -11,7 +11,7 @@
 </head>
 <body>
 <h1>Добавить запись</h1>
-<form action="/products/actions/store.php" method="post">
+<form action="/products/store.php" method="post">
     <input type="text" name="name" placeholder="name">
     <input type="number" name="price" placeholder="price">
     <input type="text" name="article" placeholder="article">
