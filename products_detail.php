@@ -15,13 +15,11 @@ if ($product_id > 0) {
             LEFT JOIN 
                 receptions r ON p.id = r.product_id
             WHERE 
-                p.id = :product_id
-            LIMIT 1;";
+                p.id = :product_id;";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['product_id' => $product_id]);
     $productsWithReceptions = $stmt->fetch(PDO::FETCH_ASSOC);
-
 
     if ($productsWithReceptions) { ?>
         <table>
