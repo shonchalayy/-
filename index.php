@@ -31,7 +31,7 @@ $receptions = $pdo->query('SELECT r.id, p.name AS product, r.reception_date, r.q
         <td>Price</td>
         <td>Article</td>
         <td>На складе</td>
-        <td>Подробнее</td>
+        <td></td>
     </tr>
     </thead>
     <tbody>
@@ -41,13 +41,13 @@ $receptions = $pdo->query('SELECT r.id, p.name AS product, r.reception_date, r.q
             <td><?= $product['name'] ?></td>
             <td><?= $product['price'] ?></td>
             <td><?= $product['article'] ?></td>
-            <td><?= $product['total_quantity_on_stock'] ?: 0 ?></td> <!-- отображаем total_quantity_on_stock или 0 если NULL -->
+            <td><?= $product['total_quantity_on_stock'] ?: 0 ?></td>
             <td><a href="products_detail.php?id=<?= $product['id'] ?>"><button>Подробнее</button></a></td>
         </tr>
     <?php endforeach; ?>
     </tbody>
 </table>
-
+<a href="/products/index.php"><button>Товары</button></a>
 <h2>Список поступлений</h2>
 <table>
     <thead>
@@ -69,5 +69,6 @@ $receptions = $pdo->query('SELECT r.id, p.name AS product, r.reception_date, r.q
     <?php endforeach; ?>
     </tbody>
 </table>
+<a href="/receptions/index.php"><button>Товары</button></a>
 </body>
 </html>
