@@ -12,10 +12,10 @@
 <body>
 <h1>Добавить запись</h1>
 <form action="/products/store.php" method="post">
-    <input type="text" name="name" placeholder="name">
-    <input type="number" name="price" placeholder="price">
-    <input type="text" name="article" placeholder="article">
-    <input type="submit" name="Отправить">
+    <input type="text" name="name" id="name" placeholder="name">
+    <input type="number" name="price" id="price" placeholder="price">
+    <input type="text" name="article" id="article" placeholder="article">
+    <input type="submit" name="Отправить" id="btn2">
 </form>
 </body>
 </html>

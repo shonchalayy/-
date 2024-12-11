@@ -16,14 +16,14 @@ $products = $pdo->query('SELECT * FROM products')
 <body>
 <h1>Добавить запись</h1>
 <form action="/receptions/store.php" method="post">
-    <select name="product_id">
+    <select name="product_id" id="product">
         <?php foreach ($products as $product): ?>
             <option value="<?= $product['id'] ?>"><?= $product['name'] ?></option>
         <?php endforeach; ?>
     </select>
-    <input type="date" name="reception_date">
-    <input type="number" name="quantity" placeholder="количество">
-    <input type="submit" name="Отправить">
+    <input type="date" name="reception_date" id="date">
+    <input type="number" name="quantity" id="quantity" placeholder="количество">
+    <input type="submit" name="Отправить" id="btn4">
 </form>
 </body>
 </html>

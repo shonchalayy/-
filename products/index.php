@@ -35,7 +35,7 @@ $products = $pdo->query('SELECT * FROM products')
     <?php endforeach;?>
     </tbody>
 </table>
-<a href="/products/create.php"><button>Добавить</button></a>
+<a href="/products/create.php" id="btn1"><button>Добавить</button></a>
 <a href="/index.php"><button>Главная</button></a>
 </body>
 </html>

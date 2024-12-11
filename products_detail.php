@@ -4,22 +4,22 @@ $pdo = require $_SERVER['DOCUMENT_ROOT'] . '/db.php';
 $product_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 if ($product_id > 0) {
-    $sql = "SELECT 
-                p.name AS product_name, 
-                p.price, 
-                p.article, 
-                COALESCE(r.reception_date, '-') AS reception_date, 
-                COALESCE(r.quantity, '-') AS quantity
-            FROM 
+    $sql = "SELECT
+                p.name AS product_name,
+                p.price,
+                p.article,
+                COALESCE(r.reception_date, '') AS reception_date,
+                COALESCE(r.quantity, 0) AS quantity
+            FROM
                 products p
-            LEFT JOIN 
+            LEFT JOIN
                 receptions r ON p.id = r.product_id
-            WHERE 
-                p.id = :product_id;";
+            WHERE
+                p.id = :product_id";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['product_id' => $product_id]);
-    $productsWithReceptions = $stmt->fetch(PDO::FETCH_ASSOC);
+    $productsWithReceptions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if ($productsWithReceptions) { ?>
         <table>
@@ -30,13 +30,15 @@ if ($product_id > 0) {
                 <th>Дата поступления</th>
                 <th>Количество</th>
             </tr>
-            <tr>
-                <td><?= $productsWithReceptions['product_name'] ?></td>
-                <td><?= $productsWithReceptions['price'] ?></td>
-                <td><?= $productsWithReceptions['article'] ?></td>
-                <td><?= $productsWithReceptions['reception_date'] ?></td>
-                <td><?= $productsWithReceptions['quantity'] ?></td>
-            </tr>
+            <?php foreach ($productsWithReceptions as $productWithReception): ?>
+                <tr>
+                    <td><?= $productWithReception['product_name'] ?></td>
+                    <td><?= $productWithReception['price'] ?></td>
+                    <td><?= $productWithReception['article'] ?></td>
+                    <td><?= $productWithReception['reception_date'] ?></td>
+                    <td><?= $productWithReception['quantity'] ?></td>
+                </tr>
+            <?php endforeach; ?>
         </table>
     <?php } else { ?>
         <p>Продукт не найден</p>
@@ -45,5 +47,3 @@ if ($product_id > 0) {
     echo "<p>ID продукта не указан.</p>";
 }
 ?>
-</body>
-</html>

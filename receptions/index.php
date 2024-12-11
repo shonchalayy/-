@@ -1,7 +1,7 @@
 <?php
 /** @var PDO $pdo */
 $pdo = require $_SERVER['DOCUMENT_ROOT'] . '/db.php';
-$receptions = $pdo->query('SELECT * FROM receptions')
+$receptions = $pdo->query('SELECT receptions. *, products.name AS product FROM receptions LEFT JOIN products ON products.id=receptions.product_id')
     ->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!doctype html>
@@ -19,7 +19,7 @@ $receptions = $pdo->query('SELECT * FROM receptions')
     <thead>
     <tr>
         <td>№</td>
-        <td>product_id</td>
+        <td>Товар</td>
         <td>Дата поступления</td>
         <td>Количество</td>
     </tr>
@@ -28,14 +28,14 @@ $receptions = $pdo->query('SELECT * FROM receptions')
     <?php foreach ($receptions as $reception): ?>
         <tr>
             <td><?=$reception['id']?></td>
-            <td><?=$reception['product_id']?></td>
+            <td><?=$reception['product']?></td>
             <td><?=$reception['reception_date']?></td>
             <td><?=$reception['quantity']?></td>
         </tr>
     <?php endforeach;?>
     </tbody>
 </table>
-<a href="/receptions/create.php"><button>Добавить</button></a>
-<a href="/index.php"><button>Главная</button></a>
+<a href="/receptions/create.php" id="btn3"><button>Добавить</button></a>
+<a href="/index.php" id="btn5"><button>Главная</button></a>
 </body>
 </html>
